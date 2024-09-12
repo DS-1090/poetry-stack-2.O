@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetry Stack</title>
+    <link href="main.css" rel="stylesheet"> 
+</head>
+
+<body>
+    <header>
+        <h1 style="font-size:400%;">Poetry Stack</h1>
+        <p>Notions in a rhythm</p>
+    </header>
+
+    <nav>
+        <a href="#about">About</a>
+        <a href="#poetry">Poems</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="main">
+        <div class="left">
+            <div class="line-1 anim-typewriter" style="color: #fff;">
+                <h2>Welcome<br> to my <span class="col">poetry</span> page!</h2>
+            </div>
+        </div>
+        <div class="right">
+            <img src="images/feather.png" width="300" height="300" alt="picture">
+        </div>
+    </section>
+    
+
+    <section class="poetry" id="poetry"><br>
+        <h2 style="color: #c59795; font-size: 300%;">Featured Poems</h2>
+        <div class="poem-carousel">
+            <div class="grid-container">
+                <div class="container">
+                    <a href="brutus.html" style="font-size: 120%">Et tu Brutus</a>
+                </div>
+                <div class="container">
+                    <a href="midnight radio.html" style="font-size: 120%">Midnight Radio</a>
+                </div>
+
+                 <div class="container">
+                    <a href="time.html" style="font-size: 120%">Till the end of time</a>
+                </div>
+                <div class="container">
+                    <a href="dand.html" style="font-size: 120%">Dandelion</a>
+                </div>
+                <div class="container">
+                    <a href="crystal.html" style="font-size: 120%">Crystal beads</a>
+                </div>
+                <div class="container">
+                    <a href="pearl.html" style="font-size: 120%">Pearl throne</a>
+                </div>
+                <div class="container">
+                    <a href="soul.html" style="font-size: 120%">The soul speaks</a>
+                </div>
+                <div class="container">
+                    <a href="wall.html" style="font-size: 120%">The bricked wall of the bagh</a>
+                </div>
+                <div class="container">
+                    <a href="you.html" style="font-size: 120%">You said</a>
+                </div>
+                <div class="container">
+                    <a href="lang.html" style="font-size: 120%">What's a Language</a>
+                </div>
+                <div class="container">
+                    <a href="quest.html" style="font-size: 120%">Quest for enlightenment</a>
+                </div>
+                <div class="container">
+                    <a href="one.html" style="font-size: 120%">One lonely evening</a>
+                </div>
+                <div class="container">
+                    <a href="cosmos.html" style="font-size: 120%">Solaced by cosmos</a>
+                </div>
+              
+            </div>
+            <div class="navigation">
+                <button class="prev" onclick="changePage(-1)" style="margin-left: 4%;"> Prev</button>
+                <button class="next" onclick="changePage(1)" style="margin-right: 4%;" >Next </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h2 >About Me</h2>
+        <p>
+            A computer science pregraduate, literature enthusiast, a busy bee, a wall flower and a huge eco enthusiast!
+        </p>
+    </section>
+
+    <button id="contact" onclick="con()"> Contact</button>
+    <p id="output"></p>
+
+
+    <footer>
+        <p>Made with ❤ by Divya <br> &copy; 2024 Poetry Stack. All rights reserved.</p>
+    </footer>
+
+    <script>
+     function con() {
+  var name = prompt('Enter name:');
+  var num = prompt('Enter number:');
+  var out = document.getElementById('output');
+
+  fetch('2temp.php', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'text=' + encodeURIComponent(name) + '&num=' + encodeURIComponent(num),
+  })
+ // .then(response => response.text())
+  .then(data => {
+      console.log(data);
+       out.innerHTML ='You have entered-Name: ' +  name +  '<br>Phone Number: ' +  num +'<br>Thank you, we will contact soon';
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
+
+
+  const gridContainer = document.querySelector('.grid-container');
+  const nextButton = document.querySelector('.next');
+  const prevButton = document.querySelector('.prev');
+
+  if (nextButton && prevButton) {
+    nextButton.addEventListener('click', () => changePage(1));
+    prevButton.addEventListener('click', () => changePage(-1));
+  }
+
+  function changePage(direction) {
+    const scrollAmount = gridContainer.clientWidth;
+    const maxScroll = gridContainer.scrollWidth - gridContainer.clientWidth;
+    const currentScroll = gridContainer.scrollLeft;
+
+    let newScroll = currentScroll + direction * scrollAmount;
+    newScroll = Math.min(maxScroll, Math.max(0, newScroll));
+
+    gridContainer.scrollTo({
+      left: newScroll,
+      behavior: 'smooth',
+    });
+  }
+
+
+    </script>
+</body>
+
+</html>
