@@ -1,5 +1,7 @@
 # poetry-stack-2.O
 A blog site to display my poems. It has the option to comment and like. Stores comments and contact details of visitors in a MySQL database. Used Docker.
+ <a href="https://ds-1090.github.io/poetry-stack-2.O/">URL</a>
+
 ![image](https://github.com/user-attachments/assets/64af82ad-c84f-4110-b268-cc24241f72e5)
 
 
